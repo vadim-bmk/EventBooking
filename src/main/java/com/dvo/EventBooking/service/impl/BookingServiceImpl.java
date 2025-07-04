@@ -89,7 +89,7 @@ public class BookingServiceImpl implements BookingService {
 
         if (booking.getEventId() != null) {
             Event event = eventService.findById(booking.getEventId());
-            if (!Objects.equals(event.getId(), booking.getEventId())) {
+            if (!Objects.equals(existBooking.getEvent().getId(), booking.getEventId())) {
                 int count = bookingRepository.countByEventId(booking.getEventId());
                 if (count == event.getMaxAttendees()) {
                     throw new EntityNotFoundException(MessageFormat.format("Event with ID: {0} is full", booking.getEventId()));
